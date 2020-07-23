@@ -5,9 +5,39 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: aquamarine;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*:focus{
+  outline: none;
+}
+
+button[id="add-new-note"],
+button[id="add-new-note"] > img{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+
+  border-radius: 100%;
+
+  width: 50px;
+  height: 50px;
+}
+
+button[id="add-new-note"] > img:hover{
+  cursor: pointer;
+  background-color: white;
+  filter: brightness(89%) drop-shadow(0 0 3px rgba(0, 0, 0, 0.65));
+}
+
+#footer{
+  position: fixed;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.10);
+  font-size: small;
+  text-align: center;
+  line-height: 40px;
+  word-wrap: break-spaces;
 }
