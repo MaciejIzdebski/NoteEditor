@@ -1,0 +1,87 @@
+
+#GreyCanvas,
+#NoteEditorContainer{
+    height: 100vh;
+    width: 100vw;
+    background-color: transparent;
+}
+
+#GreyCanvas{
+    height: inherit;
+    width: inherit;
+    position: fixed;
+    background-color: black;
+    opacity: 30%;
+}
+
+#NoteEditor {
+    height: 90%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    background-color: #d98b00;
+    border-radius: 10px;
+}
+
+.NoteEditorHeader,
+.NoteEditorContent{
+    margin: 10px;
+    padding: 5px;
+    width: 100%;
+    background-color: inherit;
+}
+
+.NoteEditorContent:focus{
+    background-color: #ffba45;
+}
+
+.NoteEditorHeader{
+    text-align: center;
+    font-size: large;
+    font-weight: bolder;
+}
+
+#NoteEditorContent{
+    font-size: medium;
+}
+
+#NoteEditorFooter{
+    display: grid;
+    grid: auto / auto auto;
+
+    margin-bottom: 10px;
+    margin-right: 0;
+    margin-left: 0;
+
+    height: min-content;
+}
+
+#OkButton,
+#CancelButton{
+    border-style: none;
+    background-color: transparent;
+    opacity: 70%;
+    border-radius: 10px;
+}
+
+#OkButton{
+    grid-area: 1/1;
+}
+
+#CancelButton{
+    grid-area: 1/2;
+}
+
+#OkButton:hover,
+#CancelButton:hover{
+    opacity: 100%;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
+}
+
+#OkButton > img,
+#CancelButton > img{
+    width: 20px;
+    height: 20px;
+    opacity: inherit;
+}

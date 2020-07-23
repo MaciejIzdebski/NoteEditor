@@ -1,0 +1,75 @@
+.Note{
+  background-color: #d98b00;
+
+  border-radius: 5px;
+
+  display: inline-block;
+
+  width: 200px;
+
+  margin: 15px;
+}
+
+.Note > * {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.Note > .NoteHeader{
+  font-weight: bold;
+  text-align: center;
+  font-size: large;
+}
+
+.Note > .NoteContent{
+  font-size: small;
+}
+
+.Note > .NoteFooter{
+  display: grid;
+  grid: auto / auto auto;
+
+  margin-bottom: 2px;
+  margin-right: 0;
+  margin-left: 0;
+
+  height: min-content;
+}
+
+.Note > .NoteFooter .NoteEditButton,
+.Note > .NoteFooter .NoteDeleteButton{
+  border-style: none;
+  background-color: transparent;
+  opacity: 70%;
+  border-radius: 10px;
+}
+
+.Note > .NoteFooter .NoteEditButton{
+  grid-area: 1 / 1;
+}
+
+.Note > .NoteFooter .NoteDeleteButton{
+  grid-area: 1 / 2;
+}
+
+.Note > .NoteFooter .NoteEditButton:hover{
+  opacity: 100%;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
+}
+.Note > .NoteFooter .NoteDeleteButton:hover{
+  opacity: 100%;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+}
+
+/*.Note > .NoteFooter .NoteEditButton:focus,*/
+/*.Note > .NoteFooter .NoteDeleteButton:focus{*/
+/*  outline: 0;*/
+/*}*/
+
+.Note > .NoteFooter .NoteEditButton img,
+.Note > .NoteFooter .NoteDeleteButton img{
+  width: 20px;
+  height: 20px;
+  opacity: inherit;
+}
