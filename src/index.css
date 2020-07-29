@@ -1,19 +1,30 @@
 body {
   margin: 0;
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: aquamarine;
+
+  display: flex;
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
 }
 
 *:focus{
   outline: none;
 }
 
-button[id="add-new-note"],
-button[id="add-new-note"] > img{
+#root{
+  min-height: 100vh;
+  width: 100vw;
+}
+
+#add-new-note,
+#add-new-note > img{
   position: fixed;
   bottom: 50px;
   right: 50px;

@@ -1,27 +1,61 @@
+#NoteList:empty:before{
+  content: "Brak notatek";
+  font: italic xx-large bold;
+  font-family: Roboto, sans-serif;
+  color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: inherit;
+  height: 100vh;
+}
+
 .Note{
   background-color: #d98b00;
 
   border-radius: 5px;
 
-  display: inline-block;
+  display: inline-flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
 
-  width: 200px;
+  width: content-box;
 
   margin: 15px;
 }
 
-.Note > * {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px;
+.Note > .NoteHeader:empty:before,
+.Note > .NoteContent:empty:before{
+  content:attr(placeholder);
+  color: rgba(0,0,0,0.5);
+  font-style: italic;
 }
+
+.Note > .NoteHeader,
+.Note > .NoteContent{
+  background-color: transparent;
+
+  border: none;
+
+  min-height: 1em;
+
+  overflow-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-y: hidden;
+
+  margin: 1.5em;
+}
+
 
 .Note > .NoteHeader{
   font-weight: bold;
-  text-align: center;
   font-size: large;
-}
 
+  text-align: center;
+}
 .Note > .NoteContent{
   font-size: small;
 }
@@ -33,8 +67,6 @@
   margin-bottom: 2px;
   margin-right: 0;
   margin-left: 0;
-
-  height: min-content;
 }
 
 .Note > .NoteFooter .NoteEditButton,
@@ -61,11 +93,6 @@
   opacity: 100%;
   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
 }
-
-/*.Note > .NoteFooter .NoteEditButton:focus,*/
-/*.Note > .NoteFooter .NoteDeleteButton:focus{*/
-/*  outline: 0;*/
-/*}*/
 
 .Note > .NoteFooter .NoteEditButton img,
 .Note > .NoteFooter .NoteDeleteButton img{

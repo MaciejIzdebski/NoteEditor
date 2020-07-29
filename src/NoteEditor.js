@@ -1,70 +1,109 @@
 import React from 'react';
 import './NoteEditor.css';
-import ReactDOM from 'react-dom'
+import ImageButton from "./ImageButton";
+import ReactDOM from "react-dom"
+
+function Overlay(props){
+    return (<div id="Overlay">{props.children}</div>);
+}
+
+function NoteEditorFooter(props) {
+    return (
+        <div id="NoteEditorFooter">
+            <ImageButton id="OkButton" onClick={props.applyChanges}
+                imageSrc={"icons/001-tick.svg"} altText={"Ok"}/>
+            <span style={{backgroundColor: "black", width:"1px"}}/>
+            <ImageButton id="CancelButton" onClick={props.discardChanges}
+                 imageSrc={"icons/002-close.svg"} altText="Anuluj"/>
+        </div>
+    );
+}
 
 class NoteEditor extends React.Component{
 
     constructor(props) {
         super(props);
         this.state = {
-            visible : false
+            visible : true,
+            noteTitle : "",
+            noteContent : ""
         }
-        this.setVisibility = this.setVisibility.bind(this);
+        this.discardChanges = this.discardChanges.bind(this);
+        this.applyChanges = this.applyChanges.bind(this);
+        this.closeEditor = this.closeEditor.bind(this);
+        this.handleContentChange = this.handleContentChange.bind(this);
+        this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.editNote = this.editNote.bind(this);
     }
 
-    render() {
-        if(!this.state.visible) {
-            return null;
-        }
-
-        return (
-            <div id="GreyCanvas">
-              <div id="NoteEditor">
-                  <input id="NoteEditorHeader">
-                      {this.state.title}
-                  </input>
-                  <input id="NoteEditorContent">
-                      {this.state.content}
-                  </input>
-                  <div id="NoteEditorFooter">
-                      <button id="OkButton">
-                          <img src={"icons/001-tick.svg"} alt="Ok"/>
-                      </button>
-                      <button id="CancelButton">
-                          <img src={"icons/004-close.svg"} alt="Anuluj"/>
-                      </button>
-                  </div>
-              </div>
-            </div>
-        );
-    }
-
-    setVisibility(visibility){
+    handleTitleChange(event){
+        this.state.onTitleChange(event.target.value);
         this.setState({
-            visible: visibility
+            noteTitle: event.target.value
         })
     }
 
-    editNote(note){
-        this.setVisibility(true)
+    handleContentChange(event){
+        this.state.onContentChange(event.target.value);
+        this.setState({
+            noteContent: event.target.value
+        })
     }
 
-    createNewNote(){
-        this.setVisibility(true)
+
+    render() {
+        if(!this.state.visible)
+            return null;
+
+        return (
+            <Overlay>
+              <div id="NoteEditor">
+                  <textarea id="NoteEditorHeader" value={this.state.noteTitle}
+                            placeholder={"<Tytuł>"} onChange={this.handleTitleChange} />
+                  <textarea id="NoteEditorContent" value={this.state.noteContent}
+                            placeholder={"<Zawartość>"} onChange={this.handleContentChange}/>
+                  <NoteEditorFooter discardChanges={this.discardChanges}
+                                    applyChanges={this.applyChanges}/>
+              </div>
+            </Overlay>
+        );
+    }
+
+    discardChanges(){
+        this.state.onTitleChange(this.state.noteTitleCopy);
+        this.state.onContentChange(this.state.noteContentCopy);
+        this.closeEditor();
     }
 
     closeEditor(){
-        this.setVisibility(false)
+        this.setState({
+            visible: false
+        })
     }
 
-    applyChanges(){
-        this.setVisibility(false)
+    applyChanges() {
+        this.closeEditor();
+    }
+
+
+    editNote(note){
+        let title = note.state.title;
+        let content = note.state.content;
+        this.setState({
+            visible: true,
+            noteTitle: title,
+            noteContent: content,
+            noteTitleCopy: title,
+            noteContentCopy: content,
+            onContentChange: (value) => note.handleContentChange(value),
+            onTitleChange: (value) => note.handleTitleChange(value)
+        });
     }
 }
 
-let noteEditor = ReactDOM.render(
-    <NoteEditor/>,
-    document.getElementById("NoteEditorContainer")
-)
+const NoteEditorRef = React.createRef();
 
-export default noteEditor;
+// noinspection JSCheckFunctionSignatures
+ReactDOM.render(<NoteEditor ref={NoteEditorRef} />, document.getElementById("NoteEditorContainer"));
+
+export default NoteEditorRef;
