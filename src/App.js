@@ -5,20 +5,22 @@ import NoteEditorRef from "./NoteEditor";
 
 function NoteList(props) {
     return (<div id={"NoteList"}>
-            {props.notes.map(
+            {
+                props.notes.map(
                 (note) =>
                     <Note key={note.noteId} noteId={note.noteId} title={note.title}
-                          content={note.content} handleDelete={props.onDeleteNote} handleEdit={props.onEditNote}/>)}
+                          content={note.content} handleDelete={props.onDeleteNote} handleEdit={props.onEditNote}/>)
+            }
         </div>
     );
 }
 
-function Footer(props){
+function Footer(_){
     return (
         <div id="footer">
             All icons made by
             <a href="https://www.flaticon.com/authors/google" title="Google">Google</a>
-            from
+             from
             <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <br/>
             Copyright &copy Maciej Izdebski. All rights reserved.
         </div>
@@ -26,6 +28,20 @@ function Footer(props){
 }
 
 class App extends React.Component{
+
+    atomicInteger = 2;
+    constructor(props) {
+        super(props);
+        this.state = {
+            notes : [
+                this.createNote()
+            ]
+        };
+        this.addNewNote = this.addNewNote.bind(this);
+        this.delete = this.delete.bind(this);
+        this.edit = this.edit.bind(this);
+    }
+
 
     createNote(title="", content=""){
         this.atomicInteger++
@@ -35,25 +51,12 @@ class App extends React.Component{
             content: content
         }
     }
-    atomicInteger = 2;
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            notes : [
-                this.createNote("","Zawartość notatki")
-            ]
-        };
-        this.createNewNote = this.createNewNote.bind(this);
-        this.delete = this.delete.bind(this);
-        this.edit = this.edit.bind(this);
-    }
 
     delete(note){
         let noteIndex = this.state.notes.findIndex(
             (n)=> n.noteId === note.noteId);
         this.setState(
-            function (state,props) {
+            function (state,_) {
                 state.notes.splice(noteIndex, 1);
                 return {
                     notes : state.notes
@@ -66,10 +69,10 @@ class App extends React.Component{
         NoteEditorRef.current.editNote(note);
     }
 
-    createNewNote(){
+    addNewNote(){
         let newNote = this.createNote();
         this.setState(
-            function (state,props) {
+            function (state,_) {
             state.notes.push(newNote);
             return {
                 notes : state.notes
@@ -81,7 +84,7 @@ class App extends React.Component{
         return (
             <React.StrictMode>
                 <NoteList notes={this.state.notes} onDeleteNote={this.delete} onEditNote={this.edit}/>
-                <ImageButton id={"add-new-note"} onClick={this.createNewNote}
+                <ImageButton id={"add-new-note"} onClick={this.addNewNote}
                              imageSrc={"icons/005-plus.svg"} altText={"Dodaj notatki"}/>
                 <Footer/>
             </React.StrictMode>

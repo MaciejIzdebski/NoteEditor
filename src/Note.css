@@ -8,10 +8,11 @@
   justify-content: center;
   width: inherit;
   height: 100vh;
+
 }
 
 .Note{
-  background-color: #d98b00;
+  background-color: #519872;
 
   border-radius: 5px;
 
@@ -21,7 +22,7 @@
   -ms-flex-direction: column;
   -webkit-flex-direction: column;
 
-  width: content-box;
+  min-width: 155px;
 
   margin: 15px;
 }
@@ -39,14 +40,14 @@
 
   border: none;
 
-  min-height: 1em;
+  min-height: 2em;
 
   overflow-wrap: break-word;
   word-break: break-word;
   word-wrap: break-word;
   overflow-y: hidden;
 
-  margin: 1.5em;
+  margin: 1em;
 }
 
 
@@ -64,38 +65,38 @@
   display: grid;
   grid: auto / auto auto;
 
-  margin-bottom: 2px;
+  margin-bottom: 5px;
   margin-right: 0;
   margin-left: 0;
 }
 
-.Note > .NoteFooter .NoteEditButton,
-.Note > .NoteFooter .NoteDeleteButton{
+.NoteEditButton,
+.NoteDeleteButton{
   border-style: none;
   background-color: transparent;
   opacity: 70%;
   border-radius: 10px;
 }
 
-.Note > .NoteFooter .NoteEditButton{
+.NoteEditButton{
   grid-area: 1 / 1;
 }
 
-.Note > .NoteFooter .NoteDeleteButton{
+.NoteDeleteButton{
   grid-area: 1 / 2;
 }
 
-.Note > .NoteFooter .NoteEditButton:hover{
+.NoteEditButton:hover{
   opacity: 100%;
   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
 }
-.Note > .NoteFooter .NoteDeleteButton:hover{
+.NoteDeleteButton:hover{
   opacity: 100%;
   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
 }
 
-.Note > .NoteFooter .NoteEditButton img,
-.Note > .NoteFooter .NoteDeleteButton img{
+.NoteEditButton img,
+.NoteDeleteButton img{
   width: 20px;
   height: 20px;
   opacity: inherit;

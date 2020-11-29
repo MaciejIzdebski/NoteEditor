@@ -24,7 +24,7 @@ class NoteEditor extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            visible : true,
+            visible : false,
             noteTitle : "",
             noteContent : ""
         }
@@ -59,9 +59,9 @@ class NoteEditor extends React.Component{
             <Overlay>
               <div id="NoteEditor">
                   <textarea id="NoteEditorHeader" value={this.state.noteTitle}
-                            placeholder={"<Tytuł>"} onChange={this.handleTitleChange} />
+                            placeholder="<Tytuł>" onChange={this.handleTitleChange} />
                   <textarea id="NoteEditorContent" value={this.state.noteContent}
-                            placeholder={"<Zawartość>"} onChange={this.handleContentChange}/>
+                            placeholder="<Zawartość>" onChange={this.handleContentChange}/>
                   <NoteEditorFooter discardChanges={this.discardChanges}
                                     applyChanges={this.applyChanges}/>
               </div>

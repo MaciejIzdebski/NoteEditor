@@ -6,7 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: aquamarine;
+  background-color: #648DE5;
 
   display: flex;
   flex-wrap: wrap;
@@ -50,5 +50,4 @@ button[id="add-new-note"] > img:hover{
   font-size: small;
   text-align: center;
   line-height: 40px;
-  word-wrap: break-spaces;
 }
